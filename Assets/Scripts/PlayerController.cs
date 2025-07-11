@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public int playerIndex = 1; // 1이면 1P, 2면 2P
     public float moveSpeed = 5f;  // 이동 속도
     public float jumpForce = 7f;  // 점프 힘
     private bool isGrounded;      // 착지 여부 체크
@@ -10,7 +11,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();  // Rigidbody2D 컴포넌트 할당
+        rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -23,15 +24,16 @@ public class PlayerController : MonoBehaviour
     // 이동 처리
     private void HandleMovement()
     {
-        float moveInput = Input.GetAxis("Horizontal");  // A/D 또는 Left/Right 키로 이동
-        Vector2 moveVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y); // Y값은 점프만 처리
+        if (rb == null) return;
+        float moveInput = Input.GetAxis(playerIndex == 1 ? "Horizontal" : "Horizontal2");
+        Vector2 moveVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
         rb.linearVelocity = moveVelocity;
     }
 
     // 점프 처리
     private void HandleJump()
     {
-        if (isGrounded && Input.GetButtonDown("Jump"))  // Space 키로 점프
+        if (isGrounded && Input.GetButtonDown(playerIndex == 1 ? "Jump" : "Jump2"))
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         }
@@ -40,7 +42,7 @@ public class PlayerController : MonoBehaviour
     // 숙이기 처리
     private void HandleCrouch()
     {
-        if (Input.GetButtonDown("Crouch"))  // C 키로 숙이기
+        if (Input.GetKeyDown(playerIndex == 1 ? KeyCode.C : KeyCode.K))
         {
             isCrouching = !isCrouching;
             // 애니메이션 및 크기 조정 등을 추가할 수 있음
@@ -64,4 +66,3 @@ public class PlayerController : MonoBehaviour
         }
     }
 }
-
