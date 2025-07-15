@@ -267,6 +267,7 @@ GameObject:
   - component: {fileID: 311897090}
   - component: {fileID: 311897091}
   - component: {fileID: 311897092}
+  - component: {fileID: 311897093}
   m_Layer: 0
   m_Name: katana2
   m_TagString: Untagged
@@ -457,6 +458,18 @@ MonoBehaviour:
   fallMultiplier: 2.5
   lowJumpMultiplier: 2
   isGrounded: 0
+--- !u!114 &311897093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 311897086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b159eb31dd0ba6b47a52751c8aec361d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
